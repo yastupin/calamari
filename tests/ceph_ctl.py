@@ -12,7 +12,7 @@ import json
 import urllib2
 
 from minion_sim.sim import MinionSim
-from minion_sim.log import log as minion_sim_log
+from minion_sim.log import log
 from django.utils.unittest.case import SkipTest
 from tests.config import TestConfig
 
@@ -23,7 +23,8 @@ log = logging.getLogger(__name__)
 
 handler = logging.FileHandler("minion_sim.log")
 handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(name)s %(message)s"))
-minion_sim_log.addHandler(handler)
+log.addHandler(handler)
+log.setLevel(logging.INFO)
 
 
 class CephControl(object):
@@ -171,6 +172,8 @@ class ExternalCephControl(CephControl):
         self.cluster_distro = config.get('testing', 'cluster_distro')
 
     def _run_command(self, target, command):
+        log.debug(target)
+        log.debug(command)
         user_at_host = next(t for t in self.config['cluster'].iterkeys() if t.split('@')[1] == target)
         proc = Popen([
             'ssh',
@@ -191,7 +194,7 @@ class ExternalCephControl(CephControl):
         return out
 
     def configure(self, server_count, cluster_count=1):
-
+        log.debug('external configure')
         # I hope you only wanted three, because I ain't buying
         # any more servers...
         if server_count > 3 or cluster_count != 1:
