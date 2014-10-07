@@ -22,6 +22,7 @@ class TestCrushNodeFactory(TestCase):
                                            -3: {'name': 'rack2', 'items': []}},
                       'osd_tree_node_by_id': {2: {'name': 'osd.2'},
                                               3: {'name': 'osd.3'}},
+                      'parent_bucket_by_node_id': {-2: {'name': 'root', 'bucket-type': 'root'}},
                       'osds_by_id': {0: {'up': True}, 1: {'up': False}}}
         fake_cluster_monitor.configure_mock(**attributes)
 
@@ -181,3 +182,35 @@ class TestCrushNodeFactory(TestCase):
 
         delete_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == [('osd crush remove', {'name': 'root'})]
+
+    @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
+    def test_update_rename_relink_to_parent(self):
+        attribs = {'name': 'renamed',
+                   'bucket-type': 'rack',
+                   "items": [{"id": 2,
+                              "weight": 22,
+                              "pos": 0
+                              },
+                             {"id": 3,
+                              "weight": 33,
+                              "pos": 1
+                              }
+                             ]
+                   }
+        update_node = self.factory.update(-2, attribs)
+        self.assertIsInstance(update_node, RadosRequest, 'renaming crush node')
+
+        update_node.submit(54321)
+        self.assertEqual(self.fake_salt.run_job.call_args[0][2][2], [
+            ('osd crush add-bucket', {'name': 'renamed', 'type': 'rack'}),
+            ('osd crush move', {'args': 'root=root', 'name': 'renamed'}),
+            ('osd crush remove', {'name': 'rack1'}),
+            ('osd crush reweight', {'name': 'osd.2', 'weight': 0.0}),
+            ('osd crush remove', {'name': 'osd.2'}),
+            ('osd crush add', {'args': ['rack=renamed'], 'id': 2, 'weight': 0.0}),
+            ('osd crush reweight', {'name': 'osd.2', 'weight': 22}),
+            ('osd crush reweight', {'name': 'osd.3', 'weight': 0.0}),
+            ('osd crush remove', {'name': 'osd.3'}),
+            ('osd crush add', {'args': ['rack=renamed'], 'id': 3, 'weight': 0.0}),
+            ('osd crush reweight', {'name': 'osd.3', 'weight': 33})]
+        )

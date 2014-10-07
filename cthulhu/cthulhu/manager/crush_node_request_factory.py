@@ -9,12 +9,16 @@ class CrushNodeRequestFactory(RequestFactory):
     def update(self, node_id, attributes):
         # TODO need smarts about what to change, report No-ops can we do that from here?
         current_node = self._cluster_monitor.get_sync_object(OsdMap).crush_node_by_id[node_id]
+        parent = self._cluster_monitor.get_sync_object(OsdMap).parent_bucket_by_node_id.get(node_id, None)
         name, bucket_type, items = [attributes[key] for key in ('name', 'bucket-type', 'items')]
 
         # TODO change to use rename-bucket when #9526 lands in ceph
         commands = []
         if name != current_node['name'] or bucket_type != current_node['bucket-type']:
-            commands = [add_bucket(name, bucket_type), remove_bucket(current_node['name'])]
+            commands.append(add_bucket(name, bucket_type))
+            if parent is not None:
+                commands.append(move_bucket(name, parent['name'], parent['bucket-type']))
+            commands.append(remove_bucket(current_node['name']))
 
         to_remove = []
         for item in current_node['items']:

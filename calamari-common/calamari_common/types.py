@@ -57,6 +57,7 @@ class OsdMap(VersionedSyncObject):
             self.pools_by_id = dict([(p['pool'], p) for p in data['pools']])
             self.osd_tree_node_by_id = dict([(o['id'], o) for o in data['tree']['nodes'] if o['id'] >= 0])
             self.crush_node_by_id = dict([(o['id'], o) for o in data['crush']['buckets']])
+            self.parent_bucket_by_node_id = self._map_parent_buckets(data['tree']['nodes'])
 
             # Special case Yuck
             flags = data.get('flags', '').replace('pauserd,pausewr', 'pause')
@@ -68,6 +69,15 @@ class OsdMap(VersionedSyncObject):
             self.pools_by_id = {}
             self.osd_tree_node_by_id = {}
             self.flags = dict([(x, False) for x in OSD_FLAGS])
+
+    def _map_parent_buckets(self, nodes):
+        '''
+        Builds a dict of node_id -> parent_node for all nodes with parents in the crush map
+        '''
+        parent_map = {}
+        for node in nodes:
+            parent_map.update([(child_id, node) for child_id in node.get('children', [])])
+        return parent_map if parent_map else None
 
     @memoize
     def get_tree_nodes_by_id(self):
