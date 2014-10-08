@@ -1,5 +1,4 @@
 import getpass
-import logging
 import shutil
 import tempfile
 import time
@@ -17,6 +16,7 @@ from django.utils.unittest.case import SkipTest
 from tests.config import TestConfig
 
 config = TestConfig()
+'''
 logging.basicConfig()
 
 log = logging.getLogger(__name__)
@@ -25,6 +25,7 @@ handler = logging.FileHandler("minion_sim.log")
 handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(name)s %(message)s"))
 log.addHandler(handler)
 log.setLevel(logging.INFO)
+'''
 
 
 class CephControl(object):
@@ -203,6 +204,7 @@ class ExternalCephControl(CephControl):
         self._bootstrap(self.config['master_fqdn'])
         self.restart_minions()
 
+        self.reset_crush_map()
         self.reset_all_osds(self._list_osds())
 
         # Ensure all OSDs are initially up: assertion per #7813
@@ -227,7 +229,9 @@ class ExternalCephControl(CephControl):
         return self.get_server_fqdns()
 
     def shutdown(self):
-        pass
+        log.info('Resetting CRUSH map on shutdown')
+        temp_crushmap_filename = "/tmp/test_crush_map"
+        self._run_command(self._get_admin_node(), "ceph --cluster {c} osd setcrushmap -i {crush_name}".format(c=self.cluster_name, crush_name=temp_crushmap_filename))
 
     def get_fqdns(self, fsid):
         # TODO when we support multiple cluster change this
@@ -239,6 +243,16 @@ class ExternalCephControl(CephControl):
             if minion_id and minion_id not in target:
                 continue
             self._run_command(target, "sudo service salt-minion {action}".format(action=action))
+
+    def reset_crush_map(self):
+        """
+        This depends on the map being good on first run and the admin_node being stable because it is the persistance of the tempfile that make this work
+        """
+        # TODO make this more robust
+        temp_crushmap_filename = "/tmp/test_crush_map"
+        log.info('Resetting CRUSH map')
+        # get map store it
+        self._run_command(self._get_admin_node(), "ls {crush_name} || ceph --cluster {c} osd getcrushmap -o {crush_name}".format(c=self.cluster_name, crush_name=temp_crushmap_filename))
 
     def _wait_for_state(self, command, state):
         log.info('Waiting for {state} on cluster'.format(state=state))

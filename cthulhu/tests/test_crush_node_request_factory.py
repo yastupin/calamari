@@ -16,13 +16,13 @@ class TestCrushNodeFactory(TestCase):
         attributes = {'name': 'I am a fake',
                       'fsid': 12345,
                       'get_sync_object.return_value': fake_cluster_monitor,
-                      'crush_node_by_id': {-1: {'name': 'root', 'bucket-type': 'root', 'items': [{'id': -3, 'weight': 3, 'pos': 1}, {'id': -2, 'weight': 2, 'pos': 0}]},  # TODO is bucket-type right?
+                      'crush_node_by_id': {-1: {'name': 'root', 'type_name': 'root', 'items': [{'id': -3, 'weight': 3, 'pos': 1}, {'id': -2, 'weight': 2, 'pos': 0}]},
                                            -2: {'name': 'rack1', 'items': []},
                                            -4: {'name': 'rack3', 'items': []},
                                            -3: {'name': 'rack2', 'items': []}},
                       'osd_tree_node_by_id': {2: {'name': 'osd.2'},
                                               3: {'name': 'osd.3'}},
-                      'parent_bucket_by_node_id': {-2: {'name': 'root', 'bucket-type': 'root'}},
+                      'parent_bucket_by_node_id': {-2: {'name': 'root', 'type': 'root'}},
                       'osds_by_id': {0: {'up': True}, 1: {'up': False}}}
         fake_cluster_monitor.configure_mock(**attributes)
 
@@ -48,8 +48,8 @@ class TestCrushNodeFactory(TestCase):
         create_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == \
             [('osd crush add-bucket', {'name': 'fake', 'type': 'root'}),
-             ('osd crush move', {'args': 'root=fake', 'name': 'rack1'}),
-             ('osd crush move', {'args': 'root=fake', 'name': 'rack2'}),
+             ('osd crush move', {'args': ['root=fake'], 'name': 'rack1'}),
+             ('osd crush move', {'args': ['root=fake'], 'name': 'rack2'}),
              ]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
@@ -104,9 +104,9 @@ class TestCrushNodeFactory(TestCase):
         update_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == \
             [('osd crush add-bucket', {'name': 'renamed', 'type': 'root'}),
+             ('osd crush move', {'args': ['root=renamed'], 'name': 'rack1'}),
+             ('osd crush move', {'args': ['root=renamed'], 'name': 'rack2'}),
              ('osd crush remove', {'name': 'root'}),
-             ('osd crush move', {'args': 'root=renamed', 'name': 'rack1'}),
-             ('osd crush move', {'args': 'root=renamed', 'name': 'rack2'}),
              ]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
@@ -132,9 +132,9 @@ class TestCrushNodeFactory(TestCase):
 
         update_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == \
-            [('osd crush move', {'args': 'root=root', 'name': 'rack1'}),
-             ('osd crush move', {'args': 'root=root', 'name': 'rack2'}),
-             ('osd crush move', {'args': 'root=root', 'name': 'rack3'}),
+            [('osd crush move', {'args': ['root=root'], 'name': 'rack1'}),
+             ('osd crush move', {'args': ['root=root'], 'name': 'rack2'}),
+             ('osd crush move', {'args': ['root=root'], 'name': 'rack3'}),
              ]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
@@ -153,7 +153,7 @@ class TestCrushNodeFactory(TestCase):
         update_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == \
             [('osd crush remove', {'name': 'rack2'}),
-             ('osd crush move', {'args': 'root=root', 'name': 'rack1'}),
+             ('osd crush move', {'args': ['root=root'], 'name': 'rack1'}),
              ]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
@@ -172,7 +172,7 @@ class TestCrushNodeFactory(TestCase):
         update_node.submit(54321)
         assert self.fake_salt.run_job.call_args[0][2][2] == \
             [('osd crush remove', {'name': 'rack2'}),
-             ('osd crush move', {'args': 'root=root', 'name': 'rack1'}),
+             ('osd crush move', {'args': ['root=root'], 'name': 'rack1'}),
              ]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
@@ -203,8 +203,7 @@ class TestCrushNodeFactory(TestCase):
         update_node.submit(54321)
         self.assertEqual(self.fake_salt.run_job.call_args[0][2][2], [
             ('osd crush add-bucket', {'name': 'renamed', 'type': 'rack'}),
-            ('osd crush move', {'args': 'root=root', 'name': 'renamed'}),
-            ('osd crush remove', {'name': 'rack1'}),
+            ('osd crush move', {'args': ['root=root'], 'name': 'renamed'}),
             ('osd crush reweight', {'name': 'osd.2', 'weight': 0.0}),
             ('osd crush remove', {'name': 'osd.2'}),
             ('osd crush add', {'args': ['rack=renamed'], 'id': 2, 'weight': 0.0}),
@@ -212,5 +211,7 @@ class TestCrushNodeFactory(TestCase):
             ('osd crush reweight', {'name': 'osd.3', 'weight': 0.0}),
             ('osd crush remove', {'name': 'osd.3'}),
             ('osd crush add', {'args': ['rack=renamed'], 'id': 3, 'weight': 0.0}),
-            ('osd crush reweight', {'name': 'osd.3', 'weight': 33})]
+            ('osd crush reweight', {'name': 'osd.3', 'weight': 33}),
+            ('osd crush remove', {'name': 'rack1'}),
+        ]
         )

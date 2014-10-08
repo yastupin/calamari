@@ -57,7 +57,7 @@ urlpatterns = patterns(
         calamari_rest.views.v2.CrushNodeViewSet.as_view({'get': 'list', 'post': 'create'}),
         name='cluster-crush_node-list'),
     url(r'^cluster/(?P<fsid>[a-zA-Z0-9-]+)/crush_node/(?P<node_id>-*\d+)$',
-        calamari_rest.views.v2.CrushNodeViewSet.as_view({'get': 'retrieve', 'patch': 'update'}),
+        calamari_rest.views.v2.CrushNodeViewSet.as_view({'get': 'retrieve', 'patch': 'update', 'delete': 'destroy'}),
         name='cluster-crush_node-detail'),
     url(r'^cluster/(?P<fsid>[a-zA-Z0-9-]+)/pool$',
         calamari_rest.views.v2.PoolViewSet.as_view({'get': 'list', 'post': 'create'}),

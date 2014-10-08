@@ -136,7 +136,6 @@ The CRUSH algorithm distributes data objects among storage devices according to 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, fsid, node_id):
-        # TODO do we need to heal the Tree?
         delete_response = self.client.delete(fsid, CRUSH_NODE, int(node_id), status=status.HTTP_202_ACCEPTED)
         return Response(delete_response, status=status.HTTP_202_ACCEPTED)
 
@@ -160,7 +159,7 @@ The CRUSH algorithm distributes data objects among storage devices according to 
             if errors:
                 return Response(errors, status=status.HTTP_400_BAD_REQUEST)
 
-            response = self.client.update(fsid, CRUSH_NODE, node_id, updates)
+            response = self.client.update(fsid, CRUSH_NODE, int(node_id), updates)
 
             assert 'request_id' in response
             return Response(response, status=status.HTTP_202_ACCEPTED)

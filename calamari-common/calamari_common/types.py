@@ -77,6 +77,7 @@ class OsdMap(VersionedSyncObject):
         parent_map = {}
         for node in nodes:
             parent_map.update([(child_id, node) for child_id in node.get('children', [])])
+        log.info('crush node parent map {p} version {v}'.format(p=parent_map, v=self.version))
         return parent_map if parent_map else None
 
     @memoize
