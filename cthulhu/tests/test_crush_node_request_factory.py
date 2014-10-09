@@ -12,18 +12,32 @@ class TestCrushNodeFactory(TestCase):
     fake_salt.run_job.return_value = {'jid': 12345}
 
     def setUp(self):
+        crush_node_by_id = {-1:
+                            {'name': 'root',
+                             'type_name': 'root',
+                             'items': [{'id': -3,
+                                        'weight': 3,
+                                        'pos': 1},
+                                       {'id': -2,
+                                        'weight': 2,
+                                        'pos': 0}]
+                             },
+                            -2: {'name': 'rack1', 'items': []},
+                            -4: {'name': 'rack3', 'items': []},
+                            -3: {'name': 'rack2', 'items': []}}
+
+        osd_map_attrs = {'get_tree_node': lambda x: crush_node_by_id[x],
+                         'osd_tree_node_by_id': {2: {'name': 'osd.2'},
+                                                 3: {'name': 'osd.3'}},
+                         'parent_bucket_by_node_id': {-2: {'name': 'root', 'type': 'root'}},
+                         'osds_by_id': {0: {'up': True}, 1: {'up': False}}}
+        fake_osd_map = MagicMock()
+        fake_osd_map.configure_mock(**osd_map_attrs)
+
         fake_cluster_monitor = MagicMock()
         attributes = {'name': 'I am a fake',
                       'fsid': 12345,
-                      'get_sync_object.return_value': fake_cluster_monitor,
-                      'crush_node_by_id': {-1: {'name': 'root', 'type_name': 'root', 'items': [{'id': -3, 'weight': 3, 'pos': 1}, {'id': -2, 'weight': 2, 'pos': 0}]},
-                                           -2: {'name': 'rack1', 'items': []},
-                                           -4: {'name': 'rack3', 'items': []},
-                                           -3: {'name': 'rack2', 'items': []}},
-                      'osd_tree_node_by_id': {2: {'name': 'osd.2'},
-                                              3: {'name': 'osd.3'}},
-                      'parent_bucket_by_node_id': {-2: {'name': 'root', 'type': 'root'}},
-                      'osds_by_id': {0: {'up': True}, 1: {'up': False}}}
+                      'get_sync_object.return_value': fake_osd_map}
         fake_cluster_monitor.configure_mock(**attributes)
 
         self.factory = CrushNodeRequestFactory(fake_cluster_monitor)
@@ -177,11 +191,11 @@ class TestCrushNodeFactory(TestCase):
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
     def test_delete_bucket(self):
-        delete_node = self.factory.delete(-1)
+        delete_node = self.factory.delete(-2)
         self.assertIsInstance(delete_node, RadosRequest, 'renaming crush node')
 
         delete_node.submit(54321)
-        assert self.fake_salt.run_job.call_args[0][2][2] == [('osd crush remove', {'name': 'root'})]
+        assert self.fake_salt.run_job.call_args[0][2][2] == [('osd crush remove', {'name': 'rack1'})]
 
     @patch('cthulhu.manager.user_request.LocalClient', fake_salt)
     def test_update_rename_relink_to_parent(self):

@@ -71,9 +71,9 @@ class OsdMap(VersionedSyncObject):
             self.flags = dict([(x, False) for x in OSD_FLAGS])
 
     def _map_parent_buckets(self, nodes):
-        '''
+        """
         Builds a dict of node_id -> parent_node for all nodes with parents in the crush map
-        '''
+        """
         parent_map = {}
         for node in nodes:
             parent_map.update([(child_id, node) for child_id in node.get('children', [])])
@@ -83,6 +83,12 @@ class OsdMap(VersionedSyncObject):
     @memoize
     def get_tree_nodes_by_id(self):
         return dict((n["id"], n) for n in self.data['tree']["nodes"])
+
+    def get_tree_node(self, node_id):
+        try:
+            return self.crush_node_by_id[node_id]
+        except KeyError:
+            raise NotFound(CRUSH_NODE, node_id)
 
     def _get_crush_rule_osds(self, rule):
         nodes_by_id = self.get_tree_nodes_by_id()
@@ -232,6 +238,10 @@ class NotFound(Exception):
 
     def __str__(self):
         return "Object of type %s with id %s not found" % (self.object_type, self.object_id)
+
+
+class BucketNotEmptyError(Exception):
+    pass
 
 
 MON = 'mon'
