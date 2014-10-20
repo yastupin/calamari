@@ -1,36 +1,66 @@
 Examples for api/v2/cluster/<fsid>/event
 ========================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/event
+api/v2/cluster/2f221b7e-2739-4da0-b363-cffbeba1ee28/event
 ---------------------------------------------------------
 
 .. code-block:: json
 
    {
-     "count": 4, 
+     "count": 12, 
      "previous": null, 
      "results": [
        {
+         "message": "Health of cluster 'ceph' degraded from HEALTH_OK to HEALTH_WARN", 
+         "when": "2014-10-20T08:36:59.885-07:00", 
+         "severity": "WARNING"
+       }, 
+       {
          "message": "Started: Creating pool 'newname'", 
-         "when": "2014-09-17T19:36:43.893Z", 
+         "when": "2014-10-20T08:36:58.666-07:00", 
          "severity": "INFO"
        }, 
        {
-         "message": "Added server figment000.cluster0.com with 1 monitor service, 4 OSDs", 
-         "when": "2014-09-17T19:36:42.381Z", 
-         "severity": "INFO"
+         "message": "Cluster 'ceph' regained contact", 
+         "when": "2014-10-20T08:34:22.012-07:00", 
+         "severity": "RECOVERY"
        }, 
        {
-         "message": "Added server figment001.cluster0.com with 4 OSDs, 1 monitor service", 
-         "when": "2014-09-17T19:36:42.349Z", 
-         "severity": "INFO"
+         "message": "Cluster 'ceph' is late reporting in", 
+         "when": "2014-10-20T08:33:41.992-07:00", 
+         "severity": "WARNING"
        }, 
        {
-         "message": "Added server figment002.cluster0.com with 4 OSDs, 1 monitor service", 
-         "when": "2014-09-17T19:36:38.961Z", 
-         "severity": "INFO"
+         "message": "Cluster 'ceph' is late reporting in", 
+         "when": "2014-10-20T07:41:26.485-07:00", 
+         "severity": "WARNING"
+       }, 
+       {
+         "message": "Cluster 'ceph' is late reporting in", 
+         "when": "2014-10-17T11:27:45.508-07:00", 
+         "severity": "WARNING"
+       }, 
+       {
+         "message": "Cluster 'ceph' regained contact", 
+         "when": "2014-10-17T11:26:15.494-07:00", 
+         "severity": "RECOVERY"
+       }, 
+       {
+         "message": "Cluster 'ceph' is late reporting in", 
+         "when": "2014-10-17T11:26:05.492-07:00", 
+         "severity": "WARNING"
+       }, 
+       {
+         "message": "Cluster 'ceph' regained contact", 
+         "when": "2014-10-17T10:13:17.512-07:00", 
+         "severity": "RECOVERY"
+       }, 
+       {
+         "message": "Cluster 'ceph' is late reporting in", 
+         "when": "2014-10-17T10:13:07.510-07:00", 
+         "severity": "WARNING"
        }
      ], 
-     "next": null
+     "next": "http://localhost:8000/api/v2/cluster/2f221b7e-2739-4da0-b363-cffbeba1ee28/event?page=2"
    }
 

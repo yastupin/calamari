@@ -1,92 +1,67 @@
 Examples for api/v2/server/<fqdn>/grains
 ========================================
 
-api/v2/server/figment000.cluster0.com/grains
---------------------------------------------
+api/v2/server/vpm113.front.sepia.ceph.com/grains
+------------------------------------------------
 
 .. code-block:: json
 
    {
+     "biosversion": "Bochs", 
      "kernel": "Linux", 
-     "domain": "", 
-     "kernelrelease": "3.2.0-23-generic", 
+     "domain": "front.sepia.ceph.com", 
+     "zmqversion": "3.2.2", 
+     "kernelrelease": "3.2.0-60-virtual", 
      "pythonpath": [
-       "/home/vagrant/calamari/env/bin", 
-       "/home/vagrant/calamari/env/local/lib/python2.7/site-packages/distribute-0.6.24-py2.7.egg", 
-       "/home/vagrant/calamari/env/local/lib/python2.7/site-packages/pip-1.1-py2.7.egg", 
-       "/home/vagrant/calamari/env/src/coverage", 
-       "/home/vagrant/calamari/env/src/whisper", 
-       "/home/vagrant/calamari/rest-api", 
-       "/home/vagrant/calamari/minion-sim", 
-       "/home/vagrant/calamari/cthulhu", 
-       "/home/vagrant/calamari/calamari-web", 
-       "/home/vagrant/calamari/calamari-common", 
-       "/home/vagrant/calamari/env/lib/python2.7", 
-       "/home/vagrant/calamari/env/lib/python2.7/plat-linux2", 
-       "/home/vagrant/calamari/env/lib/python2.7/lib-tk", 
-       "/home/vagrant/calamari/env/lib/python2.7/lib-old", 
-       "/home/vagrant/calamari/env/lib/python2.7/lib-dynload", 
+       "/usr/bin", 
        "/usr/lib/python2.7", 
        "/usr/lib/python2.7/plat-linux2", 
        "/usr/lib/python2.7/lib-tk", 
-       "/home/vagrant/calamari/env/local/lib/python2.7/site-packages", 
-       "/usr/local/lib/python2.7/site-packages", 
+       "/usr/lib/python2.7/lib-old", 
+       "/usr/lib/python2.7/lib-dynload", 
        "/usr/local/lib/python2.7/dist-packages", 
        "/usr/lib/python2.7/dist-packages", 
        "/usr/lib/pymodules/python2.7"
      ], 
+     "serialnumber": "Not Specified", 
      "ip_interfaces": {
        "lo": [
          "127.0.0.1"
        ], 
-       "virbr0": [
-         "192.168.122.1"
-       ], 
-       "eth1": [
-         "192.168.107.138"
-       ], 
        "eth0": [
-         "10.0.2.15"
+         "10.214.138.176"
        ]
      }, 
      "fqdn_ip6": [], 
-     "mem_total": 365, 
+     "mem_total": 1901, 
      "saltversioninfo": [
        2014, 
        1, 
-       0
+       7
      ], 
-     "id": "figment000.cluster0.com", 
+     "id": "vpm113.front.sepia.ceph.com", 
      "osrelease": "12.04", 
      "ps": "ps -efHww", 
-     "server_id": 1778094264, 
-     "lsb_distrib_description": "Ubuntu 12.04 LTS", 
-     "num_cpus": 2, 
+     "server_id": 1651811769, 
+     "lsb_distrib_description": "Ubuntu 12.04.4 LTS", 
+     "num_cpus": 1, 
      "hwaddr_interfaces": {
        "lo": "00:00:00:00:00:00", 
-       "virbr0": "36:92:b2:48:8b:9b", 
-       "eth1": "08:00:27:30:de:31", 
-       "eth0": "08:00:27:88:0c:a6"
+       "eth0": "52:54:00:ea:2d:24"
      }, 
-     "virtual": "VirtualBox", 
+     "virtual": "kvm", 
      "osfullname": "Ubuntu", 
-     "master": "localhost", 
+     "master": "10.99.118.70", 
      "ipv4": [
-       "10.0.2.15", 
-       "127.0.0.1", 
-       "192.168.107.138", 
-       "192.168.122.1"
+       "10.214.138.176", 
+       "127.0.0.1"
      ], 
      "ipv6": [
-       "2607:f298:a:607:3c03:41c9:95bf:f4cc", 
-       "2607:f298:a:607:a00:27ff:fe30:de31", 
        "::1", 
-       "fe80::a00:27ff:fe30:de31", 
-       "fe80::a00:27ff:fe88:ca6"
+       "fe80::5054:ff:feea:2d24"
      ], 
      "cpu_flags": [
        "fpu", 
-       "vme", 
        "de", 
        "pse", 
        "tsc", 
@@ -100,35 +75,35 @@ api/v2/server/figment000.cluster0.com/grains
        "pge", 
        "mca", 
        "cmov", 
-       "pat", 
        "pse36", 
        "clflush", 
        "mmx", 
        "fxsr", 
        "sse", 
        "sse2", 
-       "ht", 
        "syscall", 
        "nx", 
-       "rdtscp", 
        "lm", 
-       "constant_tsc", 
+       "up", 
        "rep_good", 
        "nopl", 
        "pni", 
-       "ssse3", 
+       "vmx", 
+       "cx16", 
+       "popcnt", 
+       "hypervisor", 
        "lahf_lm"
      ], 
-     "localhost": "figment000", 
+     "localhost": "vpm113", 
      "lsb_distrib_id": "Ubuntu", 
      "fqdn_ip4": [
-       "127.0.1.1"
+       "10.214.138.176"
      ], 
-     "shell": "/bin/bash", 
-     "nodename": "figment000", 
-     "saltversion": "2014.1.0", 
+     "shell": "/bin/sh", 
+     "nodename": "vpm113", 
+     "saltversion": "2014.1.7", 
      "lsb_distrib_release": "12.04", 
-     "saltpath": "/home/vagrant/calamari/env/local/lib/python2.7/site-packages/salt", 
+     "saltpath": "/usr/lib/pymodules/python2.7/salt", 
      "pythonversion": [
        2, 
        7, 
@@ -136,26 +111,28 @@ api/v2/server/figment000.cluster0.com/grains
        "final", 
        0
      ], 
-     "host": "figment000", 
+     "host": "vpm113", 
      "os_family": "Debian", 
      "oscodename": "precise", 
-     "defaultencoding": "ISO8859-1", 
+     "defaultencoding": null, 
      "osfinger": "Ubuntu-12.04", 
+     "biosreleasedate": "01/01/2011", 
+     "manufacturer": "Bochs", 
      "num_gpus": 1, 
-     "external_ip": "38.122.20.226", 
-     "cpu_model": "Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz", 
-     "fqdn": "figment000.cluster0.com", 
+     "cpu_model": "QEMU Virtual CPU version 1.0", 
+     "fqdn": "vpm113.front.sepia.ceph.com", 
+     "productname": "Bochs", 
      "osarch": "amd64", 
      "cpuarch": "x86_64", 
      "lsb_distrib_codename": "precise", 
      "gpus": [
        {
-         "model": "VirtualBox Graphics Adapter", 
+         "model": "GD 5446", 
          "vendor": "unknown"
        }
      ], 
-     "path": "/home/vagrant/calamari/env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/vagrant_ruby/bin", 
+     "path": "/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin", 
      "os": "Ubuntu", 
-     "defaultlanguage": "en_US"
+     "defaultlanguage": null
    }
 

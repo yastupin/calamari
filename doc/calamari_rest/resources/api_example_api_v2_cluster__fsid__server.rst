@@ -1,7 +1,7 @@
 Examples for api/v2/cluster/<fsid>/server
 =========================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/server
+api/v2/cluster/2f221b7e-2739-4da0-b363-cffbeba1ee28/server
 ----------------------------------------------------------
 
 .. code-block:: json
@@ -9,135 +9,69 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/server
    [
      {
        "managed": true, 
-       "last_contact": "2014-09-17T19:36:42.347925+00:00", 
-       "ceph_version": "0.67.8-simulator", 
-       "backend_addr": "", 
-       "hostname": "figment001", 
-       "frontend_iface": null, 
-       "fqdn": "figment001.cluster0.com", 
-       "boot_time": "1970-01-02T10:17:36+00:00", 
-       "frontend_addr": "", 
+       "last_contact": "2014-10-20T15:36:59.140107+00:00", 
+       "ceph_version": "0.80.5-1precise", 
+       "backend_addr": null, 
+       "hostname": "vpm061", 
+       "frontend_iface": "eth0", 
+       "fqdn": "vpm061.front.sepia.ceph.com", 
+       "boot_time": "2014-10-03T16:00:52+00:00", 
+       "frontend_addr": "10.214.138.147", 
        "services": [
          {
            "running": true, 
-           "type": "osd", 
-           "id": "4", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "5", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "6", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "7", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
            "type": "mon", 
-           "id": "figment001", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
+           "id": "vpm061", 
+           "fsid": "2f221b7e-2739-4da0-b363-cffbeba1ee28"
          }
        ], 
        "backend_iface": null
      }, 
      {
        "managed": true, 
-       "last_contact": "2014-09-17T19:36:44.925755+00:00", 
-       "ceph_version": "0.67.8-simulator", 
-       "backend_addr": "", 
-       "hostname": "figment002", 
-       "frontend_iface": null, 
-       "fqdn": "figment002.cluster0.com", 
-       "boot_time": "1970-01-02T10:17:36+00:00", 
-       "frontend_addr": "", 
+       "last_contact": "2014-10-20T15:36:58.504634+00:00", 
+       "ceph_version": "0.80.5-1precise", 
+       "backend_addr": "10.214.139.152", 
+       "hostname": "vpm145", 
+       "frontend_iface": "eth0", 
+       "fqdn": "vpm145.front.sepia.ceph.com", 
+       "boot_time": "2014-10-03T16:00:50+00:00", 
+       "frontend_addr": "10.214.139.152", 
        "services": [
          {
-           "running": true, 
-           "type": "osd", 
-           "id": "9", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "11", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "mon", 
-           "id": "figment002", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "10", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "8", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }
-       ], 
-       "backend_iface": null
-     }, 
-     {
-       "managed": true, 
-       "last_contact": "2014-09-17T19:36:42.380298+00:00", 
-       "ceph_version": "0.67.8-simulator", 
-       "backend_addr": "", 
-       "hostname": "figment000", 
-       "frontend_iface": null, 
-       "fqdn": "figment000.cluster0.com", 
-       "boot_time": "1970-01-02T10:17:36+00:00", 
-       "frontend_addr": "", 
-       "services": [
-         {
-           "running": true, 
-           "type": "mon", 
-           "id": "figment000", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
+           "running": false, 
            "type": "osd", 
            "id": "1", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
+           "fsid": "2f221b7e-2739-4da0-b363-cffbeba1ee28"
          }, 
          {
            "running": true, 
-           "type": "osd", 
-           "id": "3", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "2", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-         }, 
-         {
-           "running": true, 
-           "type": "osd", 
-           "id": "0", 
-           "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
+           "type": "mon", 
+           "id": "vpm145", 
+           "fsid": "2f221b7e-2739-4da0-b363-cffbeba1ee28"
          }
        ], 
-       "backend_iface": null
+       "backend_iface": "eth0"
+     }, 
+     {
+       "managed": true, 
+       "last_contact": "2014-10-20T15:36:57.157051+00:00", 
+       "ceph_version": "0.80.5-1precise", 
+       "backend_addr": "10.214.138.176", 
+       "hostname": "vpm113", 
+       "frontend_iface": "eth0", 
+       "fqdn": "vpm113.front.sepia.ceph.com", 
+       "boot_time": "2014-10-03T16:00:42+00:00", 
+       "frontend_addr": "10.214.138.176", 
+       "services": [
+         {
+           "running": false, 
+           "type": "osd", 
+           "id": "0", 
+           "fsid": "2f221b7e-2739-4da0-b363-cffbeba1ee28"
+         }
+       ], 
+       "backend_iface": "eth0"
      }
    ]
 

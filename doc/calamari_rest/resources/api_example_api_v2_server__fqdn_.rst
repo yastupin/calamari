@@ -1,49 +1,37 @@
 Examples for api/v2/server/<fqdn>
 =================================
 
-api/v2/server/figment000.cluster0.com
--------------------------------------
+api/v2/server/vpm113.front.sepia.ceph.com
+-----------------------------------------
 
 .. code-block:: json
 
    {
      "managed": true, 
-     "last_contact": "2014-09-17T19:36:42.380298+00:00", 
-     "hostname": "figment000", 
-     "fqdn": "figment000.cluster0.com", 
-     "boot_time": "1970-01-02T10:17:36+00:00", 
+     "last_contact": "2014-10-20T15:36:57.157051+00:00", 
+     "hostname": "vpm113", 
+     "fqdn": "vpm113.front.sepia.ceph.com", 
+     "boot_time": "2014-10-03T16:00:42+00:00", 
      "services": [
-       {
-         "running": true, 
-         "type": "mon", 
-         "id": "figment000", 
-         "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-       }, 
-       {
-         "running": true, 
-         "type": "osd", 
-         "id": "1", 
-         "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-       }, 
-       {
-         "running": true, 
-         "type": "osd", 
-         "id": "3", 
-         "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-       }, 
-       {
-         "running": true, 
-         "type": "osd", 
-         "id": "2", 
-         "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
-       }, 
        {
          "running": true, 
          "type": "osd", 
          "id": "0", 
-         "fsid": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4"
+         "fsid": "59fafa21-8cd1-4e06-98c3-1e56af96eaa1"
+       }, 
+       {
+         "running": false, 
+         "type": "osd", 
+         "id": "0", 
+         "fsid": "2f221b7e-2739-4da0-b363-cffbeba1ee28"
+       }, 
+       {
+         "running": true, 
+         "type": "mon", 
+         "id": "vpm113", 
+         "fsid": "59fafa21-8cd1-4e06-98c3-1e56af96eaa1"
        }
      ], 
-     "ceph_version": "0.67.8-simulator"
+     "ceph_version": "0.80.5-1precise"
    }
 

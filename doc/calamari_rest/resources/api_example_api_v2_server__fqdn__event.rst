@@ -1,18 +1,23 @@
 Examples for api/v2/server/<fqdn>/event
 =======================================
 
-api/v2/server/figment000.cluster0.com/event
--------------------------------------------
+api/v2/server/vpm113.front.sepia.ceph.com/event
+-----------------------------------------------
 
 .. code-block:: json
 
    {
-     "count": 1, 
+     "count": 2, 
      "previous": null, 
      "results": [
        {
-         "message": "Added server figment000.cluster0.com with 1 monitor service, 4 OSDs", 
-         "when": "2014-09-17T19:36:42.381Z", 
+         "message": "Added server vpm113.front.sepia.ceph.com with 2 OSDs, 1 monitor service", 
+         "when": "2014-10-20T08:36:57.158-07:00", 
+         "severity": "INFO"
+       }, 
+       {
+         "message": "Added server vpm113.front.sepia.ceph.com with 1 OSD, 1 monitor service", 
+         "when": "2014-10-20T08:34:21.024-07:00", 
          "severity": "INFO"
        }
      ], 

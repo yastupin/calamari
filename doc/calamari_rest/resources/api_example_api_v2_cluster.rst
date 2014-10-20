@@ -8,9 +8,9 @@ api/v2/cluster
 
    [
      {
-       "update_time": "2014-09-17T19:36:44.935570+00:00", 
-       "id": "cd50fad9-74d7-4579-9acc-f0d1e4d014b4", 
-       "name": "ceph_fake"
+       "update_time": "2014-10-20T15:36:59.447617+00:00", 
+       "id": "2f221b7e-2739-4da0-b363-cffbeba1ee28", 
+       "name": "ceph"
      }
    ]
 
