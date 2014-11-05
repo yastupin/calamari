@@ -1,14 +1,14 @@
-from django.utils.unittest.case import TestCase
 from unittest.case import TestCase as UnitTestCase
 from calamari_common.types import OsdMap
 from tests.util import load_fixture
+from mock import MagicMock
 
 
 # An OSD map with some non-default CRUSH rules in it
 INTERESTING_OSD_MAP = load_fixture('interesting_osd_map.json')
 
 
-class TestOsdMap(TestCase):
+class TestOsdMap(UnitTestCase):
     """
     Tests for the processing that we do on the OSD map to expose
     higher level views.
@@ -240,3 +240,17 @@ class TestCrushNodes(UnitTestCase):
                                                                'name': 'vpm140',
                                                                'type': 'host',
                                                                'type_id': 1}}
+
+
+class TestCrushType(UnitTestCase):
+
+    def test_shows_non_default_types(self):
+        osd_map_data = MagicMock()
+        data = {'crush': {'types': [{'type_id': 100, 'name': 'custom_type'}],
+                          'buckets': []}}
+
+        osd_map_data.__getitem__.side_effect = lambda x: data[x] if x in data else osd_map_data
+        osd_map = OsdMap(None, osd_map_data)
+        print osd_map.data['crush']['types']
+        print osd_map.crush_type_by_id
+        assert {'type_id': 100, 'name': 'custom_type'} == osd_map.crush_type_by_id[100]
