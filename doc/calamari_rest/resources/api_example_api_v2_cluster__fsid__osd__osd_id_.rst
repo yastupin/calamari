@@ -1,13 +1,13 @@
 Examples for api/v2/cluster/<fsid>/osd/<osd_id>
 ===============================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd/0
+api/v2/cluster/2101bc84-88cf-476c-9d9c-3d9ed9ada98a/osd/0
 ---------------------------------------------------------
 
 .. code-block:: json
 
    {
-     "uuid": "8bc861a2-4bb4-4659-a306-67b5d03c2f8a", 
+     "uuid": "c97edabf-7941-47cc-bccb-30f9b226ab0a", 
      "reweight": 1.0, 
      "up": true, 
      "server": "figment000.cluster0.com", 

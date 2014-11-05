@@ -1,7 +1,7 @@
 Examples for api/v2/cluster/<fsid>/crush_node/<node_id>
 =======================================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/crush_node/-1
+api/v2/cluster/2101bc84-88cf-476c-9d9c-3d9ed9ada98a/crush_node/-1
 -----------------------------------------------------------------
 
 .. code-block:: json

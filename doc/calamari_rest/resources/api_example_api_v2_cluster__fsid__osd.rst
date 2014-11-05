@@ -1,14 +1,14 @@
 Examples for api/v2/cluster/<fsid>/osd
 ======================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
+api/v2/cluster/2101bc84-88cf-476c-9d9c-3d9ed9ada98a/osd
 -------------------------------------------------------
 
 .. code-block:: json
 
    [
      {
-       "uuid": "8bc861a2-4bb4-4659-a306-67b5d03c2f8a", 
+       "uuid": "c97edabf-7941-47cc-bccb-30f9b226ab0a", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment000.cluster0.com", 
@@ -29,7 +29,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 0
      }, 
      {
-       "uuid": "1a61540e-6f5e-492d-9aaa-38f617c5bd65", 
+       "uuid": "8d774dbb-3320-4c2a-a27b-821ff7e96c5e", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment000.cluster0.com", 
@@ -50,7 +50,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 1
      }, 
      {
-       "uuid": "d089665d-c277-4293-b280-a300c8ffaa19", 
+       "uuid": "16f41994-b2b5-4eb1-ab7b-4d786a69b44f", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment000.cluster0.com", 
@@ -71,7 +71,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 2
      }, 
      {
-       "uuid": "e8dfef5a-5d98-41f6-8407-0c6256ddadc9", 
+       "uuid": "dbb5059a-6653-4ac4-b409-992bef743f51", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment000.cluster0.com", 
@@ -92,7 +92,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 3
      }, 
      {
-       "uuid": "810665fa-8ab7-4248-ac6e-83880d01dc66", 
+       "uuid": "5f420477-8e4a-4638-9ec0-31c48b5edcf6", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment001.cluster0.com", 
@@ -113,7 +113,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 4
      }, 
      {
-       "uuid": "d9bb4a0b-727e-400e-bba2-0c98fb268758", 
+       "uuid": "42c26c2b-3d58-4b75-926d-cf129a9c1849", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment001.cluster0.com", 
@@ -134,7 +134,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 5
      }, 
      {
-       "uuid": "0d57b73d-09c5-4ab8-b248-d2d0d4d8b729", 
+       "uuid": "068c66da-4987-4b18-aba8-cd8882ef6baf", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment001.cluster0.com", 
@@ -155,7 +155,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 6
      }, 
      {
-       "uuid": "16166d61-b2d8-4830-b9a8-046797b04f61", 
+       "uuid": "05698353-7bcf-46bd-b737-8b158fff7e26", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment001.cluster0.com", 
@@ -176,7 +176,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 7
      }, 
      {
-       "uuid": "b8a53973-284c-4ce9-b6c6-3d227f9c880d", 
+       "uuid": "2c1003fe-a57d-4f57-b327-727e34709f4a", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment002.cluster0.com", 
@@ -197,7 +197,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 8
      }, 
      {
-       "uuid": "163840e6-8633-49c6-8643-0afc94cd60b0", 
+       "uuid": "d1537948-c535-4970-8964-6a9a1e79b8c1", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment002.cluster0.com", 
@@ -218,7 +218,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 9
      }, 
      {
-       "uuid": "1f3d7d89-ecd8-41f9-afe1-55187e123ca9", 
+       "uuid": "8cfbe98b-6d56-4a3b-9887-f76a2a8a9026", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment002.cluster0.com", 
@@ -239,7 +239,7 @@ api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/osd
        "id": 10
      }, 
      {
-       "uuid": "832c66d1-872d-47d8-a5aa-92a5f38707fe", 
+       "uuid": "b0c0c7af-3ace-481b-b1ce-d25c3517d682", 
        "reweight": 1.0, 
        "up": true, 
        "server": "figment002.cluster0.com", 

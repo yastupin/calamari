@@ -1,7 +1,7 @@
 Examples for api/v2/cluster/<fsid>/sync_object
 ==============================================
 
-api/v2/cluster/cd50fad9-74d7-4579-9acc-f0d1e4d014b4/sync_object
+api/v2/cluster/2101bc84-88cf-476c-9d9c-3d9ed9ada98a/sync_object
 ---------------------------------------------------------------
 
 .. code-block:: json
